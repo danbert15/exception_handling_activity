@@ -29,7 +29,7 @@ class Division(Calculator):
 #Display Menu
 def show_menu():
     print("\n==============================")
-    print("      MAANGAS CALCULATOR")
+    print("      CALCULATOR KO TO")
     print("==============================")
     print("[1] Addition")
     print("[2] Subtraction")
@@ -50,11 +50,11 @@ def main():
             if choice not in ['1', '2', '3', '4']:
                 raise ValueError("Invalid operation selected!")
 
-            # Input numbers
+            #Input numbers
             num1 = float(input("Enter first number: "))
             num2 = float(input("Enter second number: "))
 
-            # Object Creation
+            #Object Creation
             if choice == '1':
                 operation = Addition(num1, num2)
                 operation_name = "Addition"
@@ -70,3 +70,30 @@ def main():
             elif choice == '4':
                 operation = Division(num1, num2)
                 operation_name = "Division"
+
+            #Display Result
+            result = operation.calculate()
+
+            print("\n==============================")
+            print(f"Operation : {operation_name}")
+            print(f"Result    : {result}")
+            print("==============================")
+
+        except ValueError as ve:
+            print(f"\nERROR: {ve}")
+
+        except ZeroDivisionError as zde:
+            print(f"\nERROR: {zde}")
+
+        except Exception as e:
+            print(f"\nUnexpected Error: {e}")
+
+        #Try Again
+        again = input("\nDo you want to try again? (y/n): ").lower()
+
+        if again != 'y':
+            print("\nThank you!")
+            break
+
+# Run Program
+main()
